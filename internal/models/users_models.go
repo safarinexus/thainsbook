@@ -23,7 +23,7 @@ type UserModel struct {
 	DB *sql.DB
 }
 
-func (u UserModel) GetUser(username string) (User, error) {
+func (u *UserModel) GetUser(username string) (User, error) {
 	var user User
 
 	row := u.DB.QueryRow("SELECT id, username, password_hash, created_at FROM users WHERE username = ?", username)
@@ -37,7 +37,7 @@ func (u UserModel) GetUser(username string) (User, error) {
 	return user, nil
 }
 
-func (u UserModel) GetUserPassword(username string) (string, error) {
+func (u *UserModel) GetUserPassword(username string) (string, error) {
 	var hashedPassword string
 
 	row := u.DB.QueryRow("SELECT password_hash FROM users WHERE username = ?", username)
@@ -51,7 +51,7 @@ func (u UserModel) GetUserPassword(username string) (string, error) {
 	return hashedPassword, nil
 }
 
-func (u UserModel) AddUser(uid string, username string, hashedPassword string) error {
+func (u *UserModel) AddUser(uid string, username string, hashedPassword string) error {
 	res, err := u.DB.Exec("INSERT INTO users (id, username, password_hash) VALUES (?, ?, ?)", uid, username, hashedPassword)
 	if err != nil {
 		return fmt.Errorf("Error in adding user: %s", err)

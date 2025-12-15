@@ -19,7 +19,7 @@ func (a *Application) HandleRegister(w http.ResponseWriter, r *http.Request) {
 	err := decoder.Decode(&u)
 	if err != nil {
 		log.Println("JSON Decode Error:", err)
-		utils.WriteError(w, http.StatusBadRequest, err.Error())
+		utils.WriteError(w, http.StatusBadRequest, "Unable to process request")
 		return
 	}
 
@@ -29,11 +29,11 @@ func (a *Application) HandleRegister(w http.ResponseWriter, r *http.Request) {
 	err = a.Users.AddUser(newId, u.Username, hashedPassword)
 	if err != nil {
 		log.Println("Unable to register new user:", err)
-		utils.WriteError(w, http.StatusInternalServerError, err.Error())
+		utils.WriteError(w, http.StatusInternalServerError, "Unable to register new user: "+u.Username)
 		return
 	}
 
-	utils.WriteJSON(w, http.StatusOK, map[string]string{"message": "User" + u.Username + "registered successfully."})
+	utils.WriteJSON(w, http.StatusOK, map[string]string{"message": "User " + u.Username + " registered successfully."})
 }
 
 func (a *Application) HandleLogin(w http.ResponseWriter, r *http.Request) {
@@ -43,7 +43,7 @@ func (a *Application) HandleLogin(w http.ResponseWriter, r *http.Request) {
 	err := decoder.Decode(&u)
 	if err != nil {
 		log.Println("JSON Decode Error:", err)
-		utils.WriteError(w, http.StatusBadRequest, err.Error())
+		utils.WriteError(w, http.StatusBadRequest, "Unable to process request")
 		return
 	}
 
@@ -69,5 +69,6 @@ func (a *Application) HandleLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Println("Token generated. Successful User login: " + u.Username)
 	utils.WriteJSON(w, http.StatusOK, map[string]string{"token": tokenString, "expiry": expiry})
 }

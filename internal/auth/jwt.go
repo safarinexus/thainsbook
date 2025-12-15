@@ -37,9 +37,7 @@ func ValidateToken(tokenString string, secret string) (string, error) {
 	}
 
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-
 		username, _ := claims["username"].(string)
-
 		if username == "" {
 			return "", errors.New("token is missing required claims")
 		}
