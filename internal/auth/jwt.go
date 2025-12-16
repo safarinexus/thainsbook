@@ -7,6 +7,7 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
+// TODO: change the param to id and bake the id into the token instead of username
 func CreateToken(username, secret string) (string, string, error) {
 	expiryTime := time.Now().Add(time.Hour * 24)
 	claims := jwt.MapClaims{
@@ -27,6 +28,7 @@ func CreateToken(username, secret string) (string, string, error) {
 	return tokenString, expiryString, nil
 }
 
+// TODO: update to returning id instead of username
 func ValidateToken(tokenString string, secret string) (string, error) {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		return []byte(secret), nil

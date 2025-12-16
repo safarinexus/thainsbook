@@ -12,6 +12,7 @@ import (
 
 func (a *Application) HandleGetUserEntries(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
+	// fetch id instead of username once updated
 	username := ctx.Value(UsernameKey).(string)
 
 	entries, err := a.Entries.GetEntriesByUser(username)
