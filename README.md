@@ -5,7 +5,16 @@
 Just as the Thain's Book is the treasured historical record in the Shire, thainsbook is the treasured record of your life. It is my headless Go API for any and all journaling needs. Write your stories here! 
 
 Disclaimer: This is just a fun side project, no data is being harvested or collected. You may choose to use my project to store your data at your own discretion. 
-## Usage
+
+## Contents 
+
+*   [Getting Started](#getting-started)
+*   [Planned Changes](#planned-changes)
+*   [Installation](#installation)
+*   [Contributing](#contributing)
+
+
+## Getting Started
 [https://thainsbook.onrender.com](https://thainsbook.onrender.com)
 
 This is a headless API, so you can use your method of choice (i.e. Postman, cURL). Please find the API guide below. Simply register your username and password and get started!
@@ -39,6 +48,18 @@ This is a headless API, so you can use your method of choice (i.e. Postman, cURL
 
 <code> DELETE api/v1/entries/{id} </code>
 * Use your JWT Token to delete any specific entry
+
+## Planned Changes
+
+I have some updates planned in the future. I'll keep them here for information and reminders. 
+
+* Text search functionality, on both title and content
+* Filtering by dates
+* Mood input (Being able to assign a mood, i.e. happy, sad, angry, to each journal entry
+* Import and Bulk Import function (from csv or txt files)
+* Bulk Delete
+* Handling Sequential ID updating on Delete
+
 
 ## Installation
 
