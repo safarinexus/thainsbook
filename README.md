@@ -59,6 +59,7 @@ I have some updates planned in the future. I'll keep them here for information a
 * Import and Bulk Import function (from csv or txt files)
 * Bulk Delete
 * Handling Sequential ID updating on Delete
+* Adding uploading of media functinoality!
 
 
 ## Installation
